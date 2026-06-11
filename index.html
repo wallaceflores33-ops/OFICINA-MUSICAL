@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oficina Musical — Organize suas aulas, alunos e materiais em um só lugar</title>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1446761663690713');
+fbq('init','4524307031134314');
+fbq('init','1624978885414883');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1446761663690713&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&family=Syne:wght@600;700;800&family=Russo+One&family=Sanchez&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://fast.wistia.com/player.js" async></script>
+<script src="https://fast.wistia.com/embed/ej9k1tdsmr.js" async type="module"></script>
+
+<style>
+:root{
+  --bg:#021923;
+  --bg-deep:#000000;
+  --orange:#F15A25;
+  --orange-soft:#ff7a47;
+  --blue:#0879cc;
+  --lime:#ccfc04;
+  --red:#911212;
+  --card:#2D2C44;
+  --white:#FFFFFF;
+  --muted:rgba(255,255,255,.72);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{max-width:100%;overflow-x:hidden}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:'Montserrat',sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:'Kanit',sans-serif;line-height:1.15}
+.degrade{
+  background-image:linear-gradient(45deg,var(--orange),#ffffff);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ---------- MARQUEE ---------- */
+.marquee{
+  background:var(--red);overflow:hidden;display:flex;white-space:nowrap;
+  padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);
+}
+.marquee__track{
+  display:inline-flex;white-space:nowrap;
+  animation:scroll 28s linear infinite;
+}
+.marquee span{
+  font-family:'Montserrat';font-weight:700;font-size:.95rem;letter-spacing:.5px;
+  padding:0 14px;
+}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;top:0;z-index:50;background:rgba(2,25,35,.85);
+  backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06);
+}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Syne';font-weight:800;font-size:1.25rem;letter-spacing:-.5px}
+.logo i{color:var(--orange)}
+.nav-cta{
+  background:var(--orange);color:#fff;text-decoration:none;font-weight:700;
+  padding:10px 20px;border-radius:10px;font-size:.9rem;transition:.25s;
+  box-shadow:0 8px 22px -8px rgba(241,90,37,.7);
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(241,90,37,.8)}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;text-align:center;padding:64px 0 80px;
+  background:radial-gradient(120% 80% at 50% -10%,#063145 0%,var(--bg) 55%,var(--bg-deep) 100%);
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(60% 50% at 20% 10%,rgba(8,121,204,.18),transparent 60%),
+             radial-gradient(50% 50% at 90% 30%,rgba(241,90,37,.14),transparent 60%);
+  pointer-events:none;
+}
+.hero .wrap{position:relative}
+.hero h1{font-size:clamp(2rem,5.4vw,3.2rem);font-weight:700;max-width:760px;margin:0 auto}
+.hero p.sub{
+  color:var(--muted);font-size:clamp(1rem,2.4vw,1.2rem);max-width:560px;
+  margin:18px auto 0;line-height:1.55;
+}
+.video-wrap{max-width:330px;margin:34px auto 0}
+.video-wrap wistia-player{border-radius:18px;overflow:hidden;display:block}
+.hero-img{
+  width:100%;max-width:880px;margin:36px auto 0;border-radius:23px;
+  box-shadow:0 30px 70px -20px rgba(95,51,174,.5);display:block;
+}
+
+/* ---------- SECTIONS ---------- */
+section.block{padding:84px 0}
+.section-title{
+  font-size:clamp(2rem,5vw,3.25rem);font-weight:600;text-align:center;
+  max-width:780px;margin:0 auto 14px;
+}
+.section-kicker{
+  text-align:center;color:var(--orange);font-family:'Syne';font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;font-size:.8rem;margin-bottom:14px;
+}
+
+/* problem cards */
+.cards{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:16px;
+  max-width:760px;margin:48px auto 0;
+}
+.card{
+  background:var(--card);border:2px solid var(--blue);border-radius:20px;
+  padding:34px 26px;text-align:center;transition:.3s;
+}
+.card:last-child{grid-column:1/-1;max-width:420px;margin:0 auto}
+.card i{
+  font-size:30px;color:var(--blue);background:rgba(8,121,204,.14);
+  width:74px;height:74px;display:grid;place-items:center;border-radius:50%;
+  margin:0 auto 18px;transition:.3s;
+}
+.card p{font-family:'Kanit';font-weight:700;font-size:1.18rem}
+.card:hover{transform:translateY(-6px);border-color:var(--lime)}
+.card:hover i{color:var(--lime);background:rgba(204,252,4,.14)}
+
+/* before / after */
+.ba{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:760px;margin:48px auto 0}
+.ba-col{border:2px solid rgba(255,255,255,.55);border-radius:24px;padding:34px 26px;text-align:center}
+.ba-before{background:linear-gradient(180deg,#623434,#351919)}
+.ba-after{background:linear-gradient(180deg,#465738,#202917)}
+.ba-badge{
+  width:96px;height:96px;border-radius:50%;display:grid;place-items:center;
+  margin:0 auto 20px;font-size:54px;
+}
+.ba-before .ba-badge{background:rgba(255,7,7,.12);color:var(--white)}
+.ba-after .ba-badge{background:rgba(41,163,2,.16);color:var(--white)}
+.ba h3{font-family:'Russo One';font-size:1.3rem;font-weight:400;margin-bottom:20px;letter-spacing:1px}
+.ba ul{list-style:none;text-align:left;display:inline-block}
+.ba li{font-family:'Kanit';font-weight:700;font-size:1.18rem;margin:12px 0;display:flex;align-items:center;gap:12px}
+.ba-before li i{color:#ff4d4d}
+.ba-after li i{color:#5ed11c}
+
+/* feature rows */
+.feature{
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;
+  padding:38px 0;
+}
+.feature.rev .feat-txt{order:2}
+.feature img{width:100%;border-radius:15px;box-shadow:0 24px 50px -22px rgba(0,0,0,.7)}
+.feature h3{font-family:'Montserrat';font-weight:700;font-size:clamp(1.6rem,3.2vw,2.2rem);margin-bottom:14px;text-transform:capitalize}
+.feature p{color:var(--white);line-height:1.6;font-size:1.05rem}
+.feature p .hl{color:var(--orange);font-weight:600}
+
+/* daily 3 cols */
+.daily{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:920px;margin:50px auto 0;text-align:center}
+.daily-item i{font-size:46px;color:var(--white);margin-bottom:18px;opacity:.92}
+.daily-item p{font-family:'Kanit';font-weight:700;font-size:1.25rem;line-height:1.3}
+
+/* pricing */
+.pricing{background:linear-gradient(180deg,var(--bg) 0%,#010d12 100%)}
+.plans{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;align-items:stretch;margin-top:50px}
+.plan{
+  width:330px;background:linear-gradient(180deg,#203741,#08080A);
+  border:2px solid var(--orange);border-radius:16px;padding:34px 28px;
+  display:flex;flex-direction:column;transition:.3s;position:relative;
+}
+.plan:hover{transform:translateY(-8px);box-shadow:0 26px 60px -24px rgba(241,90,37,.6)}
+.plan.featured{border-width:3px;box-shadow:0 0 0 4px rgba(241,90,37,.12)}
+.plan .tag{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:var(--orange);color:#fff;font-weight:700;font-size:.72rem;
+  letter-spacing:1px;padding:6px 16px;border-radius:30px;text-transform:uppercase;
+}
+.plan h3{font-family:'Montserrat';font-weight:700;font-size:1.3rem;text-align:center;text-transform:capitalize}
+.plan .price{font-family:'Kanit';font-weight:700;font-size:2.4rem;text-align:center;margin:14px 0 4px}
+.plan .price small{font-size:1rem;color:var(--muted);font-weight:500}
+.plan .price-sub{text-align:center;color:var(--muted);font-size:.85rem;margin-bottom:22px}
+.plan ul{list-style:none;margin:6px 0 26px;flex:1}
+.plan li{display:flex;gap:10px;align-items:flex-start;margin:11px 0;font-size:.96rem;line-height:1.4}
+.plan li i{color:var(--orange);margin-top:3px}
+/* bonus block */
+.bonus-box{
+  margin:4px 0 26px;border:1.5px dashed rgba(204,252,4,.5);border-radius:14px;
+  background:linear-gradient(180deg,rgba(204,252,4,.08),rgba(204,252,4,.02));
+  padding:18px 18px 16px;position:relative;
+}
+.bonus-head{
+  position:absolute;top:-11px;left:50%;transform:translateX(-50%);
+  background:var(--lime);color:#0b1a00;font-family:'Syne';font-weight:800;
+  font-size:.68rem;letter-spacing:1.5px;padding:4px 14px;border-radius:30px;
+  white-space:nowrap;text-transform:uppercase;
+}
+.bonus-item{display:flex;gap:12px;align-items:flex-start;margin:14px 0 0}
+.bonus-item:first-of-type{margin-top:8px}
+.bonus-ic{
+  flex-shrink:0;width:36px;height:36px;border-radius:9px;display:grid;place-items:center;
+  background:rgba(204,252,4,.14);color:var(--lime);font-size:1rem;
+}
+.bonus-txt strong{display:block;font-size:.95rem;line-height:1.3;color:#fff;font-weight:700}
+.bonus-txt span{display:block;font-size:.78rem;color:rgba(204,252,4,.85);margin-top:2px}
+.plan .btn{
+  background:var(--orange);color:#fff;text-decoration:none;text-align:center;
+  font-weight:700;padding:15px;border-radius:10px;text-transform:capitalize;
+  transition:.25s;box-shadow:0 12px 26px -10px rgba(241,90,37,.8);
+}
+.plan .btn:hover{background:var(--orange-soft);transform:translateY(-2px)}
+
+/* guarantee */
+.guarantee{
+  background:linear-gradient(180deg,#344F62,#1a2c38);border:2px solid #fff;
+  border-radius:24px;max-width:760px;margin:0 auto;padding:44px 34px;text-align:center;
+}
+.guarantee img{width:170px;margin:0 auto 8px;display:block}
+.guarantee h3{font-family:'Kanit';font-weight:600;font-size:1.9rem;margin-bottom:12px}
+.guarantee p{font-family:'Kanit';font-weight:400;font-size:1.12rem;max-width:560px;margin:0 auto;line-height:1.5}
+
+/* faq */
+.faq{background:var(--bg-deep)}
+.faq-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
+.faq-intro h2{font-family:'Montserrat';font-weight:700;font-size:clamp(1.8rem,4vw,2.4rem);text-transform:capitalize;margin:6px 0 14px}
+.faq-intro .section-kicker{text-align:left;margin-bottom:6px}
+.faq-intro p{color:var(--muted);line-height:1.6;margin-bottom:24px}
+.faq-cta{background:var(--orange);color:#fff;text-decoration:none;font-weight:700;padding:13px 22px;border-radius:10px;display:inline-block;text-transform:capitalize;transition:.25s}
+.faq-cta:hover{background:var(--orange-soft);transform:translateY(-2px)}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.12)}
+.faq-q{
+  width:100%;background:none;border:none;color:#fff;text-align:left;cursor:pointer;
+  padding:20px 0;font-family:'Montserrat';font-weight:700;font-size:1.02rem;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+}
+.faq-q i{transition:.3s;color:var(--orange);flex-shrink:0}
+.faq-item.open .faq-q i{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--muted);line-height:1.6}
+.faq-a p{padding:0 0 20px}
+
+/* footer */
+footer{background:var(--bg-deep);text-align:center;padding:40px 0;border-top:1px solid rgba(255,255,255,.07)}
+footer .logo{justify-content:center;margin-bottom:10px}
+footer small{color:var(--muted);font-size:.82rem}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:760px){
+  section.block{padding:60px 0}
+  .cards{grid-template-columns:1fr;max-width:420px}
+  .card:last-child{grid-column:auto}
+  .ba{grid-template-columns:1fr}
+  .feature,.feature.rev{grid-template-columns:1fr;gap:22px;text-align:center}
+  .feature.rev .feat-txt{order:0}
+  .feature ul{display:inline-block;text-align:left}
+  .daily{grid-template-columns:1fr;gap:34px}
+  .faq-grid{grid-template-columns:1fr;gap:28px}
+  .faq-intro .section-kicker,.faq-intro h2{text-align:center}
+  .faq-intro{text-align:center}
+  .nav-cta{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee__track">
+    <span>✦ 30 DIAS DE GARANTIA — RISCO ZERO</span><span>✦ 30 DIAS DE GARANTIA — RISCO ZERO</span>
+    <span>✦ 30 DIAS DE GARANTIA — RISCO ZERO</span><span>✦ 30 DIAS DE GARANTIA — RISCO ZERO</span>
+    <span>✦ 30 DIAS DE GARANTIA — RISCO ZERO</span><span>✦ 30 DIAS DE GARANTIA — RISCO ZERO</span>
+    <span>✦ 30 DIAS DE GARANTIA — RISCO ZERO</span><span>✦ 30 DIAS DE GARANTIA — RISCO ZERO</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap">
+    <div class="logo"><i class="fa-solid fa-music"></i> Oficina Musical</div>
+    <a href="#planos" class="nav-cta">Acessar agora</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <h1 class="reveal">Organize suas aulas, alunos e materiais em um só lugar</h1>
+    <p class="sub reveal">Um aplicativo criado para professores de música que querem dar aulas com <strong>mais controle</strong> e <strong>menos bagunça</strong>.</p>
+    <div class="video-wrap reveal">
+      <wistia-player media-id="ej9k1tdsmr" aspect="0.5625"></wistia-player>
+    </div>
+    <img class="hero-img reveal" src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/01.png" alt="App Oficina Musical">
+  </div>
+</header>
+
+<!-- PROBLEMA -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="section-title reveal">VOCÊ FAZ TUDO… MAS SEM CONTROLE</h2>
+    <div class="cards">
+      <div class="card reveal"><i class="fa-solid fa-table-columns"></i><p>Agenda espalhada em WhatsApp, caderno</p></div>
+      <div class="card reveal"><i class="fa-solid fa-comments-dollar"></i><p>Alunos faltam e você perde dinheiro</p></div>
+      <div class="card reveal"><i class="fa-regular fa-calendar-check"></i><p>Materiais perdidos ou desorganizados</p></div>
+      <div class="card reveal"><i class="fa-solid fa-dollar-sign"></i><p>Não sabe quanto vai receber no mês</p></div>
+      <div class="card reveal"><i class="fa-solid fa-brain"></i><p>Aula improvisada em cima da hora</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ANTES / DEPOIS -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="section-title reveal">A CHAVE NÃO É TRABALHAR MAIS</h2>
+    <div class="ba">
+      <div class="ba-col ba-before reveal">
+        <div class="ba-badge"><i class="fa-solid fa-circle-xmark"></i></div>
+        <h3>ANTES</h3>
+        <ul>
+          <li><i class="fa-solid fa-xmark"></i> Desorganização</li>
+          <li><i class="fa-solid fa-xmark"></i> Falta de controle</li>
+          <li><i class="fa-solid fa-xmark"></i> Perda de alunos</li>
+          <li><i class="fa-solid fa-xmark"></i> Estresse</li>
+        </ul>
+      </div>
+      <div class="ba-col ba-after reveal">
+        <div class="ba-badge"><i class="fa-solid fa-circle-check"></i></div>
+        <h3>DEPOIS</h3>
+        <ul>
+          <li><i class="fa-solid fa-check"></i> Aulas programadas</li>
+          <li><i class="fa-solid fa-check"></i> Alunos organizados</li>
+          <li><i class="fa-solid fa-check"></i> Materiais organizados</li>
+          <li><i class="fa-solid fa-check"></i> Organização financeira</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="section-title reveal" style="margin-bottom:30px">TUDO EM UM SÓ LUGAR PENSADO PARA VOCÊ</h2>
+
+    <div class="feature rev reveal">
+      <div class="feat-txt">
+        <h3>Dashboard <span class="degrade">Inteligente</span></h3>
+        <p><span class="hl">Visualize sua escola em segundos.</span> Veja aulas do dia, alunos ativos, aulas concluídas no mês e valores a receber <span class="hl">sem planilhas, sem confusão.</span></p>
+      </div>
+      <img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/01-1.png" alt="Dashboard">
+    </div>
+
+    <div class="feature reveal">
+      <img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/02-AGENDA.png" alt="Agenda">
+      <div class="feat-txt">
+        <h3>Gestão <span class="degrade">de Aulas</span></h3>
+        <p><span class="hl">Crie, registre e acompanhe</span> todas as aulas com poucos cliques. Saiba exatamente o que foi dado, quando e para quem.</p>
+      </div>
+    </div>
+
+    <div class="feature rev reveal">
+      <div class="feat-txt">
+        <h3>Gestão <span class="degrade">de Alunos</span></h3>
+        <p>Tenha <span class="hl">controle total dos seus alunos.</span> Veja quem está ativo, quem faltou e <span class="hl">identifique alunos em risco antes de perder receita.</span></p>
+      </div>
+      <img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/03-ALUNOS.png" alt="Alunos">
+    </div>
+
+    <div class="feature reveal">
+      <img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/04-AULAS-E-MATERIAS.png" alt="Aulas e materiais">
+      <div class="feat-txt">
+        <h3>Aulas Prontas <span class="degrade">e Materiais</span></h3>
+        <p>Organize aulas prontas, materiais e repertório em um só lugar. <span class="hl">Dê aulas com mais segurança</span>, sem improviso de última hora.</p>
+      </div>
+    </div>
+
+    <div class="feature rev reveal">
+      <div class="feat-txt">
+        <h3>Comunicados <span class="degrade">Organizados</span></h3>
+        <p><span class="hl">Nunca mais esqueça de avisar um aluno ou professor.</span> O aplicativo lembra por você, no dia e na hora certa.</p>
+      </div>
+      <img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/05.png" alt="Comunicados">
+    </div>
+
+    <div class="feature reveal">
+      <img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/06.png" alt="Financeiro">
+      <div class="feat-txt">
+        <h3>Financeiro <span class="degrade">Simplificado</span></h3>
+        <p><span class="hl">Saiba quanto tem a receber</span> e acompanhe seus ganhos com clareza. <span class="hl">Evite surpresas no fim do mês</span> e tenha controle do seu financeiro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIA A DIA -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="section-title reveal">FEITO PARA O DIA A DIA DO PROFESSOR</h2>
+    <div class="daily">
+      <div class="daily-item reveal"><i class="fa-solid fa-sort-amount-up"></i><p>Após a aula, registra tudo em segundos</p></div>
+      <div class="daily-item reveal"><i class="fa-solid fa-wallet"></i><p>No fim do mês, sabe quanto vai receber</p></div>
+      <div class="daily-item reveal"><i class="fa-solid fa-sort-amount-down"></i><p>Antes da aula, você já sabe o que vai aplicar</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section class="block pricing" id="planos">
+  <div class="wrap">
+    <p class="section-kicker reveal">Escolha o plano perfeito para você</p>
+    <h2 class="section-title reveal">Planos flexíveis para atender <span class="degrade">todas as suas necessidades.</span></h2>
+    <div class="plans">
+
+      <div class="plan reveal">
+        <h3>Plano Básico</h3>
+        <div class="price">R$ 9,90<small>/mês</small></div>
+        <div class="price-sub">assinatura mensal</div>
+        <ul>
+          <li><i class="fa-solid fa-check"></i> Acesso total à ferramenta</li>
+          <li><i class="fa-solid fa-check"></i> Cancele a qualquer momento</li>
+          <li><i class="fa-solid fa-check"></i> Garantia de 30 dias</li>
+        </ul>
+        <a class="btn" href="https://payfast.greenn.com.br/redirect/266469">Acessar o aplicativo agora</a>
+      </div>
+
+      <div class="plan featured reveal">
+        <span class="tag">Mais vantajoso</span>
+        <h3>Plano Plus</h3>
+        <div class="price">R$ 97<small>/anual</small></div>
+        <div class="price-sub">Garanta o anual com super desconto e bônus especiais</div>
+        <ul>
+          <li><i class="fa-solid fa-check"></i> Acesso total à ferramenta</li>
+          <li><i class="fa-solid fa-check"></i> Cancele a qualquer momento</li>
+          <li><i class="fa-solid fa-check"></i> Garantia de 30 dias</li>
+        </ul>
+        <div class="bonus-box">
+          <span class="bonus-head"><i class="fa-solid fa-gift"></i> Bônus Exclusivos</span>
+          <div class="bonus-item">
+            <div class="bonus-ic"><i class="fa-solid fa-folder-music"></i></div>
+            <div class="bonus-txt">
+              <strong>Todos os packs de aulas prontas</strong>
+              <span>Violão, canto, guitarra, bateria e muito mais</span>
+            </div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-ic"><i class="fa-solid fa-bullhorn"></i></div>
+            <div class="bonus-txt">
+              <strong>Curso de Marketing para Professor</strong>
+              <span>Atraia mais alunos e lote sua agenda</span>
+            </div>
+          </div>
+        </div>
+        <a class="btn" href="https://payfast.greenn.com.br/redirect/292446">Acessar o aplicativo agora</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIA -->
+<section class="block">
+  <div class="wrap">
+    <div class="guarantee reveal">
+      <img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/ChatGPT-Image-22-de-fev.-de-2026-09_26_15.png" alt="Garantia 30 dias">
+      <h3>Garantia Incondicional de 30 Dias</h3>
+      <p>Se você não ficar satisfeito com nossos serviços em qualquer momento durante os primeiros 30 dias, devolvemos 100% do seu investimento. Sem perguntas, sem burocracias.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block faq">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="faq-intro reveal">
+        <p class="section-kicker">Perguntas Frequentes</p>
+        <h2>Tudo o que <span class="degrade">você precisa</span> saber</h2>
+        <p>Respondemos às perguntas mais comuns para que você tenha todas as informações antes de se juntar a nós.</p>
+        <a class="faq-cta" href="#planos">Tem mais dúvidas? Comece agora!</a>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q">O aplicativo funciona no celular? <i class="fa-solid fa-plus"></i></button>
+          <div class="faq-a"><p>Sim. O aplicativo funciona 100% online e pode ser acessado pelo celular, tablet ou computador, sem precisar instalar nada.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Serve para qualquer instrumento? <i class="fa-solid fa-plus"></i></button>
+          <div class="faq-a"><p>Sim. O aplicativo foi pensado para professores de música em geral e pode ser usado para qualquer instrumento ou canto.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Posso usar mesmo tendo poucos alunos? <i class="fa-solid fa-plus"></i></button>
+          <div class="faq-a"><p>Pode sim. O aplicativo funciona tanto para quem tem poucos alunos quanto para quem gerencia uma agenda maior.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">O aplicativo substitui o WhatsApp? <i class="fa-solid fa-plus"></i></button>
+          <div class="faq-a"><p>Ele não substitui totalmente, mas reduz muito a dependência. Com os comunicados programados, você consegue avisar alunos e professores no dia e horário certos, de forma organizada.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Posso cancelar quando quiser? <i class="fa-solid fa-plus"></i></button>
+          <div class="faq-a"><p>Sim. Você pode cancelar sua assinatura a qualquer momento, sem multa ou fidelidade.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo"><i class="fa-solid fa-music"></i> Oficina Musical</div>
+    <small>© 2026 Oficina Musical — Todos os direitos reservados.</small>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('in'),
+        (e.target.parentElement.classList.contains('cards')||
+         e.target.parentElement.classList.contains('daily'))? i*70:0);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.parentElement;
+    const a=item.querySelector('.faq-a');
+    const open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.faq-a').style.maxHeight=null;
+    });
+    if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+  });
+});
+</script>
+</body>
+</html>
