@@ -168,6 +168,7 @@ wistia-player{display:block!important}
 .bonus-ic{flex-shrink:0;width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:rgba(230,180,80,.16);color:var(--gold);font-size:.9rem}
 .bonus-txt strong{display:block;color:#fff;font-size:.9rem}
 .bonus-txt span{display:block;font-size:.75rem;color:var(--gold-soft);margin-top:2px}
+.bonus-divider{border-top:1px solid rgba(230,180,80,.2);padding-top:12px}
 .guarantee{padding:80px 0;text-align:center}
 .guarantee-box{max-width:600px;margin:0 auto;background:linear-gradient(135deg,rgba(230,180,80,.08),rgba(8,121,204,.08));border:2px solid var(--gold);border-radius:12px;padding:40px}
 .guarantee-box h3{margin-bottom:12px;font-size:1.6rem}
@@ -202,6 +203,15 @@ footer small{color:var(--muted);font-size:.8rem}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 
+/* ===== PREVIEW TOOLBAR (apague este bloco antes de publicar) ===== */
+#pvbar{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;gap:4px;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);border-radius:30px;padding:5px}
+#pvbar button{background:none;border:none;color:#fff;font-family:'Montserrat',sans-serif;font-weight:600;font-size:.8rem;padding:8px 16px;border-radius:24px;cursor:pointer;display:flex;align-items:center;gap:7px;transition:.2s}
+#pvbar button.active{background:var(--orange);color:#fff}
+#frameWrap{position:fixed;inset:0;z-index:9990;background:rgba(0,0,0,.85);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:70px 0 24px}
+#frameWrap.show{display:flex}
+.phone{width:390px;max-width:92vw;height:84vh;background:#000;border-radius:38px;border:10px solid #1a1a1a;box-shadow:0 30px 80px rgba(0,0,0,.6);overflow:hidden;position:relative}
+.phone iframe{width:100%;height:100%;border:none;border-radius:28px;background:var(--bg);display:block}
+
 @media(max-width:768px){
   .wrap{padding:0 18px}
   .nav-cta{display:none}
@@ -216,6 +226,8 @@ footer small{color:var(--muted);font-size:.8rem}
   .faq-grid{grid-template-columns:1fr;gap:28px}
   .bonus-box{padding:40px 16px 20px;margin:24px 0}
   .bonus-badge{position:static;transform:none;margin-bottom:12px;display:inline-block}
+  #pvbar{display:none}
+  #frameWrap{display:none!important}
 }
 </style>
 </head>
@@ -448,36 +460,36 @@ footer small{color:var(--muted);font-size:.8rem}
           <li><i class="fa-solid fa-check"></i> Curso de Marketing para Professores</li>
           <li><i class="fa-solid fa-check"></i> Suporte prioritário</li>
         </ul>
-        <div style="margin:20px 0 24px;border:1.5px dashed rgba(230,180,80,.55);border-radius:12px;background:linear-gradient(180deg,rgba(230,180,80,.09),rgba(230,180,80,.02));padding:20px;position:relative">
-          <span style="position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:#1a1200;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:800;letter-spacing:1px;text-transform:uppercase">🎁 Bônus Exclusivos (Grátis)</span>
-          <div style="margin-top:8px">
-            <div style="display:flex;gap:10px;margin:12px 0;align-items:flex-start">
-              <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:rgba(230,180,80,.16);color:var(--gold);font-size:.9rem"><i class="fa-solid fa-music"></i></div>
-              <div><strong style="display:block;color:#fff;font-size:.9rem">Pack Aulas - Violão</strong><span style="display:block;font-size:.75rem;color:var(--gold-soft)">Aulas prontas para você dar • R$ 47,90</span></div>
+        <div class="bonus-box">
+          <span class="bonus-badge">🎁 Bônus Exclusivos (Grátis)</span>
+          <div class="bonus-list">
+            <div class="bonus-item">
+              <div class="bonus-ic"><i class="fa-solid fa-music"></i></div>
+              <div class="bonus-txt"><strong>Pack Aulas - Violão</strong><span>Aulas prontas para você dar • R$ 47,90</span></div>
             </div>
-            <div style="display:flex;gap:10px;margin:12px 0;align-items:flex-start">
-              <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:rgba(230,180,80,.16);color:var(--gold);font-size:.9rem"><i class="fa-solid fa-guitar"></i></div>
-              <div><strong style="display:block;color:#fff;font-size:.9rem">Pack Aulas - Guitarra</strong><span style="display:block;font-size:.75rem;color:var(--gold-soft)">Aulas prontas para você dar • R$ 47,90</span></div>
+            <div class="bonus-item">
+              <div class="bonus-ic"><i class="fa-solid fa-guitar"></i></div>
+              <div class="bonus-txt"><strong>Pack Aulas - Guitarra</strong><span>Aulas prontas para você dar • R$ 47,90</span></div>
             </div>
-            <div style="display:flex;gap:10px;margin:12px 0;align-items:flex-start">
-              <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:rgba(230,180,80,.16);color:var(--gold);font-size:.9rem"><i class="fa-solid fa-microphone"></i></div>
-              <div><strong style="display:block;color:#fff;font-size:.9rem">Pack Aulas - Canto</strong><span style="display:block;font-size:.75rem;color:var(--gold-soft)">Aulas prontas para você dar • R$ 47,90</span></div>
+            <div class="bonus-item">
+              <div class="bonus-ic"><i class="fa-solid fa-microphone"></i></div>
+              <div class="bonus-txt"><strong>Pack Aulas - Canto</strong><span>Aulas prontas para você dar • R$ 47,90</span></div>
             </div>
-            <div style="display:flex;gap:10px;margin:12px 0;align-items:flex-start">
-              <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:rgba(230,180,80,.16);color:var(--gold);font-size:.9rem"><i class="fa-solid fa-drum"></i></div>
-              <div><strong style="display:block;color:#fff;font-size:.9rem">Pack Aulas - Bateria</strong><span style="display:block;font-size:.75rem;color:var(--gold-soft)">Aulas prontas para você dar • R$ 47,90</span></div>
+            <div class="bonus-item">
+              <div class="bonus-ic"><i class="fa-solid fa-drum"></i></div>
+              <div class="bonus-txt"><strong>Pack Aulas - Bateria</strong><span>Aulas prontas para você dar • R$ 47,90</span></div>
             </div>
-            <div style="display:flex;gap:10px;margin:12px 0;align-items:flex-start">
-              <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:rgba(230,180,80,.16);color:var(--gold);font-size:.9rem"><i class="fa-solid fa-keyboard"></i></div>
-              <div><strong style="display:block;color:#fff;font-size:.9rem">Pack Aulas - Piano</strong><span style="display:block;font-size:.75rem;color:var(--gold-soft)">Aulas prontas para você dar • R$ 47,90</span></div>
+            <div class="bonus-item">
+              <div class="bonus-ic"><i class="fa-solid fa-keyboard"></i></div>
+              <div class="bonus-txt"><strong>Pack Aulas - Piano</strong><span>Aulas prontas para você dar • R$ 47,90</span></div>
             </div>
-            <div style="display:flex;gap:10px;margin:12px 0;align-items:flex-start">
-              <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:rgba(230,180,80,.16);color:var(--gold);font-size:.9rem"><i class="fa-solid fa-music"></i></div>
-              <div><strong style="display:block;color:#fff;font-size:.9rem">Pack Aulas - Violino</strong><span style="display:block;font-size:.75rem;color:var(--gold-soft)">Aulas prontas para você dar • R$ 47,90</span></div>
+            <div class="bonus-item">
+              <div class="bonus-ic"><i class="fa-solid fa-music"></i></div>
+              <div class="bonus-txt"><strong>Pack Aulas - Violino</strong><span>Aulas prontas para você dar • R$ 47,90</span></div>
             </div>
-            <div style="display:flex;gap:10px;margin:12px 0;align-items:flex-start;border-top:1px solid rgba(230,180,80,.2);padding-top:12px">
-              <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:rgba(230,180,80,.16);color:var(--gold);font-size:.9rem"><i class="fa-solid fa-star"></i></div>
-              <div><strong style="display:block;color:#fff;font-size:.9rem">Combo de Super Bônus</strong><span style="display:block;font-size:.75rem;color:var(--gold-soft)">Materiais, templates e muito mais</span></div>
+            <div class="bonus-item bonus-divider">
+              <div class="bonus-ic"><i class="fa-solid fa-star"></i></div>
+              <div class="bonus-txt"><strong>Combo de Super Bônus</strong><span>Materiais, templates e muito mais</span></div>
             </div>
           </div>
         </div>
