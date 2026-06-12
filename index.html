@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oficina Musical — Organize suas aulas, alunos e materiais em um só lugar</title>
+<title>Oficina Musical — App para Professor de Música</title>
 
 <!-- Meta Pixel Code -->
 <script>
@@ -18,550 +18,519 @@ fbq('init','1624978885414883');
 fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1446761663690713&ev=PageView&noscript=1"/></noscript>
-<!-- End Meta Pixel Code -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&family=Syne:wght@600;700;800&family=Russo+One&family=Sanchez&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://fast.wistia.com/player.js" async></script>
 <script src="https://fast.wistia.com/embed/ej9k1tdsmr.js" async type="module"></script>
 
 <style>
-:root{
-  --bg:#021923;
-  --bg-deep:#000000;
-  --orange:#F15A25;
-  --orange-soft:#ff7a47;
-  --gold:#e6b450;
-  --gold-soft:#f0c97a;
-  --blue:#0879cc;
-  --lime:#ccfc04;
-  --red:#911212;
-  --card:#2D2C44;
-  --white:#FFFFFF;
-  --muted:rgba(255,255,255,.72);
-}
+:root{--bg:#021923;--bg-deep:#000000;--orange:#F15A25;--gold:#e6b450;--blue:#0879cc;--green:#29A302;--white:#fff;--muted:rgba(255,255,255,.7);--card:#1a2f3a}
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{max-width:100%;overflow-x:hidden}
-body{
-  background:var(--bg);
-  color:var(--white);
-  font-family:'Montserrat',sans-serif;
-  -webkit-font-smoothing:antialiased;
-}
-.wrap{max-width:1000px;margin:0 auto;padding:0 22px}
-h1,h2,h3{font-family:'Kanit',sans-serif;line-height:1.15}
-.degrade{
-  background-image:linear-gradient(45deg,var(--orange),var(--gold-soft));
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
+html,body{max-width:100%;overflow-x:hidden;background:var(--bg);color:var(--white);font-family:'Montserrat',sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+h1,h2,h3,h4{font-family:'Kanit',sans-serif;line-height:1.15;font-weight:700}
+h1{font-size:clamp(1.8rem,5vw,2.8rem)}
+h2{font-size:clamp(1.6rem,4vw,2.4rem)}
+h3{font-size:1.4rem}
+.degrade{background:linear-gradient(135deg,var(--orange),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+a{color:inherit;text-decoration:none}
 
-/* ---------- STAFF DIVIDER (pauta musical) ---------- */
-.staff{position:relative;height:64px;max-width:1000px;margin:0 auto}
-.staff::before{
-  content:"";position:absolute;left:22px;right:22px;top:50%;transform:translateY(-50%);
-  height:25px;opacity:.5;
-  background:repeating-linear-gradient(to bottom,rgba(230,180,80,.22) 0 1px,transparent 1px 7px);
-}
-.staff i{
-  position:absolute;top:50%;left:50%;transform:translateY(-50%) translateX(-50%);
-  color:var(--gold);font-size:24px;background:var(--bg);padding:0 14px;
-}
-.staff.dark i{background:var(--bg-deep)}
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:rgba(2,25,35,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.05);padding:14px 0}
+nav .wrap{display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Syne';font-weight:800;font-size:1.15rem}
+.logo i{color:var(--gold);margin-right:6px}
+.nav-cta{background:var(--orange);color:#fff;padding:10px 18px;border-radius:8px;font-weight:700;font-size:.85rem;transition:.25s;box-shadow:0 6px 16px -6px rgba(241,90,37,.5)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 24px -6px rgba(241,90,37,.6)}
 
-/* ---------- MARQUEE ---------- */
-.marquee{
-  background:var(--red);overflow:hidden;display:flex;white-space:nowrap;
-  padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);
-}
-.marquee__track{display:inline-flex;white-space:nowrap;animation:scroll 28s linear infinite}
-.marquee span{font-weight:700;font-size:.95rem;letter-spacing:.5px;padding:0 14px}
-.marquee span i{color:var(--gold);margin-right:6px}
-@keyframes scroll{to{transform:translateX(-50%)}}
+/* HERO */
+.hero{position:relative;padding:60px 0 80px;background:radial-gradient(150% 100% at 50% 0%,rgba(8,121,204,.2),transparent 60%);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0 40px,rgba(255,255,255,.02) 40px 41px);pointer-events:none}
+.notes{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:.4}
+.notes b{position:absolute;bottom:-10%;color:var(--gold);font-size:24px;animation:floatup 10s linear infinite}
+.notes b:nth-child(1){left:8%;animation-delay:0s}.notes b:nth-child(2){left:22%;animation-delay:2s}.notes b:nth-child(3){left:45%;animation-delay:1.2s}
+.notes b:nth-child(4){left:68%;animation-delay:3.2s}.notes b:nth-child(5){left:85%;animation-delay:.8s}
+@keyframes floatup{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:1}85%{opacity:1}100%{transform:translateY(-110vh) rotate(20deg);opacity:0}}
+.hero .wrap{position:relative;z-index:2;text-align:center}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(230,180,80,.08);border:1px solid rgba(230,180,80,.3);color:var(--gold);padding:8px 16px;border-radius:30px;font-size:.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{margin:0 auto 14px;max-width:700px}
+.hero .sub{font-size:clamp(1rem,2.2vw,1.2rem);color:var(--muted);max-width:680px;margin:0 auto 8px;line-height:1.55}
+.hero .highlight{background:rgba(241,90,37,.12);border-left:3px solid var(--orange);padding:16px 20px;margin:24px 0;border-radius:6px;color:#fff;font-size:.95rem;line-height:1.5}
+.hero .social-proof{display:flex;justify-content:center;gap:28px;margin:24px 0 32px;font-size:.9rem;color:var(--muted)}
+.hero .social-proof strong{color:var(--gold);font-weight:700}
+.hero-ctas{display:flex;flex-direction:column;gap:12px;align-items:center;margin:26px 0}
+.btn-primary{background:var(--orange);color:#fff;padding:16px 28px;border-radius:8px;font-weight:700;font-size:.95rem;transition:.3s;box-shadow:0 12px 30px -8px rgba(241,90,37,.6);border:none;cursor:pointer;display:inline-block}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 40px -6px rgba(241,90,37,.7)}
+.btn-secondary{color:var(--orange);font-size:.85rem;font-weight:600;display:flex;justify-content:center;gap:8px;margin-top:8px}
+.btn-secondary i{transition:.3s}
+.btn-secondary:hover i{transform:translateX(4px)}
+.micro-cta{font-size:.82rem;color:var(--muted);margin-top:12px}
+.micro-cta strong{color:var(--gold)}
 
-/* ---------- NAV ---------- */
-nav{
-  position:sticky;top:0;z-index:50;background:rgba(2,25,35,.85);
-  backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06);
-}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-family:'Syne';font-weight:800;font-size:1.25rem;letter-spacing:-.5px}
-.logo i{color:var(--gold)}
-.nav-cta{
-  background:var(--orange);color:#fff;text-decoration:none;font-weight:700;
-  padding:10px 20px;border-radius:10px;font-size:.9rem;transition:.25s;
-  box-shadow:0 8px 22px -8px rgba(241,90,37,.7);
-}
-.nav-cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(241,90,37,.8)}
+/* VIDEO SECTION */
+.video-sec{padding:60px 0;background:linear-gradient(180deg,var(--bg) 0%,rgba(8,121,204,.08) 100%)}
+.video-sec h2{text-align:center;margin-bottom:8px}
+.video-label{text-align:center;color:var(--muted);font-size:.9rem;margin-bottom:32px}
+.video-wrap{max-width:500px;margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px -20px rgba(8,121,204,.4)}
+wistia-player{display:block!important}
 
-/* ---------- HERO ---------- */
-.hero{
-  position:relative;text-align:center;padding:60px 0 80px;overflow:hidden;
-  background:radial-gradient(120% 80% at 50% -10%,#063145 0%,var(--bg) 55%,var(--bg-deep) 100%);
-}
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(60% 50% at 18% 10%,rgba(8,121,204,.16),transparent 60%),
-             radial-gradient(50% 50% at 88% 28%,rgba(230,180,80,.16),transparent 60%);
-  pointer-events:none;
-}
-/* faint staff lines behind hero */
-.hero::after{
-  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
-  background:repeating-linear-gradient(to bottom,transparent 0 38px,rgba(255,255,255,.03) 38px 39px);
-}
-.notes{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-.notes b{position:absolute;bottom:-10%;color:rgba(230,180,80,.30);font-size:26px;animation:floatup 9s linear infinite}
-.notes b:nth-child(1){left:8%;animation-delay:0s;font-size:20px}
-.notes b:nth-child(2){left:24%;animation-delay:2.4s;font-size:30px}
-.notes b:nth-child(3){left:48%;animation-delay:1.1s;font-size:22px}
-.notes b:nth-child(4){left:67%;animation-delay:3.6s;font-size:28px}
-.notes b:nth-child(5){left:82%;animation-delay:.6s;font-size:18px}
-.notes b:nth-child(6){left:92%;animation-delay:4.5s;font-size:24px}
-@keyframes floatup{
-  0%{transform:translateY(0) rotate(0);opacity:0}
-  12%{opacity:1}
-  88%{opacity:1}
-  100%{transform:translateY(-115vh) rotate(22deg);opacity:0}
-}
-.hero .wrap{position:relative;z-index:2}
-.hero .pretitle{
-  display:inline-flex;align-items:center;gap:8px;color:var(--gold);
-  font-family:'Syne';font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  font-size:.74rem;border:1px solid rgba(230,180,80,.35);border-radius:30px;
-  padding:7px 16px;margin-bottom:22px;background:rgba(230,180,80,.06);
-}
-.hero h1{font-size:clamp(2rem,5.4vw,3.2rem);font-weight:700;max-width:760px;margin:0 auto}
-.hero p.sub{color:var(--muted);font-size:clamp(1rem,2.4vw,1.2rem);max-width:560px;margin:18px auto 0;line-height:1.55}
-/* equalizer */
-.eq{display:flex;gap:5px;justify-content:center;align-items:flex-end;height:48px;margin:30px auto 0}
-.eq span{width:6px;border-radius:4px;background:linear-gradient(var(--gold),var(--orange));animation:eq 1.1s ease-in-out infinite}
-.eq span:nth-child(1){animation-delay:0s}.eq span:nth-child(2){animation-delay:.15s}
-.eq span:nth-child(3){animation-delay:.32s}.eq span:nth-child(4){animation-delay:.08s}
-.eq span:nth-child(5){animation-delay:.5s}.eq span:nth-child(6){animation-delay:.22s}
-.eq span:nth-child(7){animation-delay:.4s}.eq span:nth-child(8){animation-delay:.12s}
-.eq span:nth-child(9){animation-delay:.28s}.eq span:nth-child(10){animation-delay:.46s}
-.eq span:nth-child(11){animation-delay:.18s}.eq span:nth-child(12){animation-delay:.36s}
-@keyframes eq{0%,100%{height:9px}50%{height:46px}}
-.video-wrap{max-width:330px;margin:34px auto 0}
-.video-wrap wistia-player{border-radius:18px;overflow:hidden;display:block}
-.hero-img{width:100%;max-width:880px;margin:36px auto 0;border-radius:23px;box-shadow:0 30px 70px -20px rgba(230,180,80,.32);display:block}
+/* PAIN SECTION */
+.pain{padding:80px 0}
+.pain-intro{text-align:center;max-width:700px;margin:0 auto 12px}
+.pain-intro p{color:var(--muted);font-size:1.05rem;line-height:1.65}
+.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:44px;max-width:850px;margin-left:auto;margin-right:auto}
+.pain-card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:26px;text-align:center;transition:.3s}
+.pain-card:nth-child(5){grid-column:1/-1;max-width:380px;margin:0 auto}
+.pain-card:nth-child(6){grid-column:1/-1;max-width:380px;margin:0 auto}
+.pain-card-icon{font-size:32px;margin-bottom:12px}
+.pain-card p{font-family:'Kanit';font-weight:600;font-size:.95rem;line-height:1.4;color:#fff}
+.pain-card:hover{border-color:var(--gold);transform:translateY(-4px)}
 
-/* ---------- SECTIONS ---------- */
-section.block{padding:78px 0}
-.section-title{font-size:clamp(2rem,5vw,3.25rem);font-weight:600;text-align:center;max-width:780px;margin:0 auto 14px}
-.section-kicker{text-align:center;color:var(--gold);font-family:'Syne';font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:.8rem;margin-bottom:14px}
-
-/* problem cards */
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:760px;margin:48px auto 0}
-.card{background:var(--card);border:2px solid var(--blue);border-radius:20px;padding:34px 26px;text-align:center;transition:.3s}
-.card:last-child{grid-column:1/-1;max-width:420px;margin:0 auto}
-.card i{font-size:30px;color:var(--blue);background:rgba(8,121,204,.14);width:74px;height:74px;display:grid;place-items:center;border-radius:50%;margin:0 auto 18px;transition:.3s}
-.card p{font-family:'Kanit';font-weight:700;font-size:1.18rem}
-.card:hover{transform:translateY(-6px);border-color:var(--gold)}
-.card:hover i{color:var(--gold);background:rgba(230,180,80,.16)}
-
-/* before / after */
-.ba{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:760px;margin:48px auto 0}
-.ba-col{border:2px solid rgba(255,255,255,.55);border-radius:24px;padding:34px 26px;text-align:center}
-.ba-before{background:linear-gradient(180deg,#623434,#351919)}
-.ba-after{background:linear-gradient(180deg,#465738,#202917)}
-.ba-badge{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;margin:0 auto 20px;font-size:54px}
-.ba-before .ba-badge{background:rgba(255,7,7,.12)}
-.ba-after .ba-badge{background:rgba(41,163,2,.16)}
-.ba h3{font-family:'Russo One';font-size:1.3rem;font-weight:400;margin-bottom:20px;letter-spacing:1px}
+/* BEFORE/AFTER */
+.ba{padding:80px 0;text-align:center}
+.ba-intro{max-width:700px;margin:0 auto 40px;color:var(--muted);font-size:1.05rem;line-height:1.65}
+.ba-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:800px;margin:0 auto}
+.ba-col{border-radius:12px;padding:32px 26px;border:1px solid rgba(255,255,255,.1)}
+.ba-before{background:linear-gradient(135deg,rgba(255,0,0,.08),rgba(255,0,0,.03))}
+.ba-after{background:linear-gradient(135deg,rgba(41,163,2,.08),rgba(41,163,2,.03))}
+.ba-header{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:24px;font-size:1.8rem}
+.ba-header h3{margin:0;font-size:1.4rem;text-transform:uppercase;letter-spacing:1px}
+.ba-before .ba-header{color:#ff6b6b}
+.ba-after .ba-header{color:#51cf66}
 .ba ul{list-style:none;text-align:left;display:inline-block}
-.ba li{font-family:'Kanit';font-weight:700;font-size:1.18rem;margin:12px 0;display:flex;align-items:center;gap:12px}
-.ba-before li i{color:#ff4d4d}
-.ba-after li i{color:#5ed11c}
+.ba li{display:flex;gap:10px;margin:11px 0;font-family:'Kanit';font-weight:600;font-size:.95rem;align-items:flex-start}
+.ba-before li i{color:#ff6b6b}
+.ba-after li i{color:#51cf66}
 
-/* feature rows */
-.feature{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;padding:36px 0}
-.feature.rev .feat-txt{order:2}
-.feature img{width:100%;border-radius:15px;box-shadow:0 24px 50px -22px rgba(0,0,0,.7)}
-.feature h3{font-family:'Montserrat';font-weight:700;font-size:clamp(1.6rem,3.2vw,2.2rem);margin-bottom:14px;text-transform:capitalize;display:flex;align-items:center;gap:12px}
-.feature h3 .fi{font-family:'Kanit';color:var(--gold);font-size:.85em}
-.feature p{color:var(--white);line-height:1.6;font-size:1.05rem}
-.feature p .hl{color:var(--gold-soft);font-weight:600}
-.feature.rev h3{justify-content:flex-end}
+/* DAY IN LIFE */
+.daily{padding:60px 0}
+.daily h2{text-align:center;margin-bottom:44px}
+.daily-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:900px;margin:0 auto}
+.daily-item{background:var(--card);border-left:4px solid var(--gold);border-radius:8px;padding:28px;text-align:center;transition:.3s}
+.daily-item:hover{border-left-color:var(--orange);transform:translateY(-4px)}
+.daily-icon{width:70px;height:70px;background:rgba(230,180,80,.12);border-radius:50%;display:grid;place-items:center;margin:0 auto 14px;font-size:28px;color:var(--gold)}
+.daily-item h4{text-transform:capitalize;margin-bottom:8px}
+.daily-item p{color:var(--muted);font-size:.9rem;line-height:1.5}
 
-/* daily 3 cols */
-.daily{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:920px;margin:50px auto 0;text-align:center}
-.daily-item .di-ic{
-  width:88px;height:88px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;
-  font-size:36px;color:var(--gold);background:rgba(230,180,80,.10);
-  border:1px solid rgba(230,180,80,.3);transition:.3s;
-}
-.daily-item:hover .di-ic{background:rgba(230,180,80,.18);transform:translateY(-5px)}
-.daily-item p{font-family:'Kanit';font-weight:700;font-size:1.25rem;line-height:1.3}
+/* FEATURES */
+.features{padding:80px 0}
+.features-header{text-align:center;max-width:700px;margin:0 auto 50px}
+.features-header h2{margin-bottom:8px}
+.features-header p{color:var(--muted);font-size:1.05rem}
+.feature{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:60px}
+.feature.rev{grid-template-columns:1fr 1fr}
+.feature.rev .text{order:2}
+.feature.rev .img{order:1}
+.feature h3{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.feature .icon{font-size:1.8rem;color:var(--gold)}
+.feature p{color:var(--muted);line-height:1.7}
+.feature .highlight{color:var(--orange);font-weight:600}
+.feature img{width:100%;border-radius:12px;box-shadow:0 20px 50px -20px rgba(0,0,0,.5)}
 
-/* pricing */
-.pricing{background:linear-gradient(180deg,var(--bg) 0%,#010d12 100%)}
-.plans{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;align-items:stretch;margin-top:50px}
-.plan{width:330px;background:linear-gradient(180deg,#203741,#08080A);border:2px solid var(--orange);border-radius:16px;padding:34px 28px;display:flex;flex-direction:column;transition:.3s;position:relative}
-.plan:hover{transform:translateY(-8px);box-shadow:0 26px 60px -24px rgba(241,90,37,.6)}
-.plan.featured{border-color:var(--gold);border-width:3px;box-shadow:0 0 0 4px rgba(230,180,80,.12)}
-.plan .tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:#1a1200;font-weight:800;font-size:.72rem;letter-spacing:1px;padding:6px 16px;border-radius:30px;text-transform:uppercase}
-.plan h3{font-family:'Montserrat';font-weight:700;font-size:1.3rem;text-align:center;text-transform:capitalize}
-.plan .price{font-family:'Kanit';font-weight:700;font-size:2.4rem;text-align:center;margin:14px 0 4px}
-.plan .price small{font-size:1rem;color:var(--muted);font-weight:500}
-.plan .price-sub{text-align:center;color:var(--muted);font-size:.85rem;margin-bottom:22px}
-.plan ul{list-style:none;margin:6px 0 26px;flex:1}
-.plan li{display:flex;gap:10px;align-items:flex-start;margin:11px 0;font-size:.96rem;line-height:1.4}
-.plan li i{color:var(--orange);margin-top:3px}
-.plan.featured li i{color:var(--gold)}
+/* SOCIAL PROOF */
+.proof{padding:60px 0;background:linear-gradient(180deg,var(--bg) 0%,rgba(8,121,204,.06) 100%)}
+.proof h2{text-align:center;margin-bottom:44px}
+.testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.testimonial{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:28px;text-align:center}
+.testimonial-stars{margin-bottom:12px;font-size:1.2rem;color:var(--gold)}
+.testimonial-text{font-size:.95rem;line-height:1.6;margin-bottom:16px;color:#fff}
+.testimonial-author{font-weight:700;color:var(--gold);font-size:.9rem}
+.testimonial-sub{font-size:.8rem;color:var(--muted)}
 
-/* bonus block */
-.bonus-box{margin:4px 0 26px;border:1.5px dashed rgba(230,180,80,.55);border-radius:14px;background:linear-gradient(180deg,rgba(230,180,80,.09),rgba(230,180,80,.02));padding:20px 18px 16px;position:relative}
-.bonus-head{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:#1a1200;font-family:'Syne';font-weight:800;font-size:.68rem;letter-spacing:1.5px;padding:4px 14px;border-radius:30px;white-space:nowrap;text-transform:uppercase}
-.bonus-item{display:flex;gap:12px;align-items:flex-start;margin:14px 0 0}
-.bonus-item:first-of-type{margin-top:8px}
-.bonus-ic{flex-shrink:0;width:38px;height:38px;border-radius:9px;display:grid;place-items:center;background:rgba(230,180,80,.16);color:var(--gold);font-size:1rem}
-.bonus-txt strong{display:block;font-size:.95rem;line-height:1.3;color:#fff;font-weight:700}
-.bonus-txt span{display:block;font-size:.78rem;color:var(--gold-soft);margin-top:2px}
-.plan .btn{background:var(--orange);color:#fff;text-decoration:none;text-align:center;font-weight:700;padding:15px;border-radius:10px;text-transform:capitalize;transition:.25s;box-shadow:0 12px 26px -10px rgba(241,90,37,.8)}
-.plan.featured .btn{background:linear-gradient(90deg,var(--orange),var(--gold));color:#1a1200}
-.plan .btn:hover{filter:brightness(1.07);transform:translateY(-2px)}
+/* PRICING */
+.pricing{padding:80px 0;background:linear-gradient(180deg,var(--bg) 0%,rgba(2,25,35,.5) 100%)}
+.pricing-header{text-align:center;max-width:700px;margin:0 auto 50px}
+.pricing-header h2{margin-bottom:12px}
+.pricing-header p{color:var(--muted);font-size:1.05rem}
+.plans{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;max-width:900px;margin:0 auto}
+.plan{background:linear-gradient(135deg,var(--card),rgba(26,47,58,.5));border:2px solid rgba(255,255,255,.08);border-radius:12px;padding:34px 28px;transition:.3s;position:relative;display:flex;flex-direction:column}
+.plan.featured{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 0 30px -10px rgba(230,180,80,.3)}
+.plan.featured{background:linear-gradient(135deg,rgba(230,180,80,.08),rgba(230,180,80,.02))}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#1a1200;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.plan h3{margin-bottom:4px;text-align:center;text-transform:capitalize}
+.plan-price{font-family:'Kanit';font-size:2.2rem;font-weight:700;text-align:center;margin:14px 0}
+.plan-price small{font-size:1rem;color:var(--muted);font-weight:500}
+.plan-desc{text-align:center;color:var(--muted);font-size:.85rem;margin-bottom:24px}
+.plan-list{list-style:none;margin:20px 0 28px;flex:1}
+.plan-list li{display:flex;gap:8px;align-items:flex-start;margin:10px 0;font-size:.9rem;line-height:1.4}
+.plan-list li i{color:var(--gold);margin-top:3px;flex-shrink:0}
+.plan .btn-primary{width:100%;text-align:center}
+.plan.featured .btn-primary{background:linear-gradient(90deg,var(--orange),var(--gold));color:#1a1200}
 
-/* guarantee */
-.guarantee{background:linear-gradient(180deg,#344F62,#1a2c38);border:2px solid var(--gold);border-radius:24px;max-width:760px;margin:0 auto;padding:44px 34px;text-align:center}
-.guarantee img{width:170px;margin:0 auto 8px;display:block}
-.guarantee h3{font-family:'Kanit';font-weight:600;font-size:1.9rem;margin-bottom:12px}
-.guarantee p{font-family:'Kanit';font-weight:400;font-size:1.12rem;max-width:560px;margin:0 auto;line-height:1.5}
+/* GUARANTEE */
+.guarantee{padding:80px 0;text-align:center}
+.guarantee-box{max-width:600px;margin:0 auto;background:linear-gradient(135deg,rgba(230,180,80,.08),rgba(8,121,204,.08));border:2px solid var(--gold);border-radius:12px;padding:40px}
+.guarantee-box h3{margin-bottom:12px;font-size:1.6rem}
+.guarantee-box p{color:var(--muted);line-height:1.7}
 
-/* faq */
-.faq{background:var(--bg-deep)}
+/* FAQ */
+.faq{padding:80px 0}
+.faq h2{text-align:center;margin-bottom:44px}
 .faq-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
-.faq-intro h2{font-family:'Montserrat';font-weight:700;font-size:clamp(1.8rem,4vw,2.4rem);text-transform:capitalize;margin:6px 0 14px}
-.faq-intro .section-kicker{text-align:left;margin-bottom:6px}
-.faq-intro p{color:var(--muted);line-height:1.6;margin-bottom:24px}
-.faq-cta{background:var(--orange);color:#fff;text-decoration:none;font-weight:700;padding:13px 22px;border-radius:10px;display:inline-block;text-transform:capitalize;transition:.25s}
-.faq-cta:hover{background:var(--orange-soft);transform:translateY(-2px)}
-.faq-item{border-bottom:1px solid rgba(255,255,255,.12)}
-.faq-q{width:100%;background:none;border:none;color:#fff;text-align:left;cursor:pointer;padding:20px 0;font-family:'Montserrat';font-weight:700;font-size:1.02rem;display:flex;justify-content:space-between;align-items:center;gap:16px}
-.faq-q i{transition:.3s;color:var(--gold);flex-shrink:0}
+.faq-intro h3{margin-bottom:12px}
+.faq-intro p{color:var(--muted);margin-bottom:20px;line-height:1.65}
+.faq-cta{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;padding:12px 20px;border-radius:8px;font-weight:700;transition:.3s;margin-top:8px}
+.faq-cta:hover{transform:translateY(-2px);box-shadow:0 8px 20px -6px rgba(241,90,37,.5)}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.08)}
+.faq-q{width:100%;background:none;border:none;color:#fff;text-align:left;cursor:pointer;padding:18px 0;font-family:'Kanit';font-weight:600;font-size:.95rem;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:.2s}
+.faq-q:hover{color:var(--gold)}
+.faq-q i{color:var(--gold);transition:.3s}
 .faq-item.open .faq-q i{transform:rotate(45deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--muted);line-height:1.6}
-.faq-a p{padding:0 0 20px}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{color:var(--muted);padding:0 0 18px;line-height:1.65;font-size:.9rem}
 
-/* footer */
-footer{background:var(--bg-deep);text-align:center;padding:40px 0;border-top:1px solid rgba(255,255,255,.07)}
-footer .logo{justify-content:center;margin-bottom:10px}
-footer small{color:var(--muted);font-size:.82rem}
+/* CTA FINAL */
+.final-cta{padding:60px 0;text-align:center}
+.final-cta h2{margin-bottom:6px;max-width:600px;margin-left:auto;margin-right:auto}
+.final-cta p{color:var(--muted);margin:12px 0 28px;font-size:1.05rem}
 
-/* reveal */
-.reveal{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
+/* FOOTER */
+footer{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.05);padding:36px 0;text-align:center}
+footer .logo{margin-bottom:8px;font-family:'Syne';font-weight:800}
+footer small{color:var(--muted);font-size:.8rem}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 
-@media(max-width:760px){
-  section.block{padding:58px 0}
-  .staff{height:50px}
-  .cards{grid-template-columns:1fr;max-width:420px}
-  .card:last-child{grid-column:auto}
-  .ba{grid-template-columns:1fr}
-  .feature,.feature.rev{grid-template-columns:1fr;gap:22px;text-align:center}
-  .feature.rev .feat-txt{order:0}
-  .feature h3,.feature.rev h3{justify-content:center}
-  .daily{grid-template-columns:1fr;gap:34px}
-  .faq-grid{grid-template-columns:1fr;gap:28px}
-  .faq-intro{text-align:center}
-  .faq-intro .section-kicker,.faq-intro h2{text-align:center}
+@media(max-width:768px){
+  .wrap{padding:0 18px}
   .nav-cta{display:none}
+  h2{font-size:1.8rem}
+  .pain-grid{grid-template-columns:1fr}
+  .pain-card:nth-child(5),.pain-card:nth-child(6){grid-column:auto}
+  .ba-grid{grid-template-columns:1fr}
+  .daily-grid{grid-template-columns:1fr}
+  .feature,.feature.rev{grid-template-columns:1fr;gap:24px;text-align:center}
+  .feature h3,.feature.rev h3{justify-content:center}
+  .plans{grid-template-columns:1fr}
+  .faq-grid{grid-template-columns:1fr;gap:28px}
 }
 </style>
 </head>
 <body>
 
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="marquee__track">
-    <span><i class="fa-solid fa-music"></i>30 DIAS DE GARANTIA — RISCO ZERO</span><span><i class="fa-solid fa-music"></i>30 DIAS DE GARANTIA — RISCO ZERO</span>
-    <span><i class="fa-solid fa-music"></i>30 DIAS DE GARANTIA — RISCO ZERO</span><span><i class="fa-solid fa-music"></i>30 DIAS DE GARANTIA — RISCO ZERO</span>
-    <span><i class="fa-solid fa-music"></i>30 DIAS DE GARANTIA — RISCO ZERO</span><span><i class="fa-solid fa-music"></i>30 DIAS DE GARANTIA — RISCO ZERO</span>
-    <span><i class="fa-solid fa-music"></i>30 DIAS DE GARANTIA — RISCO ZERO</span><span><i class="fa-solid fa-music"></i>30 DIAS DE GARANTIA — RISCO ZERO</span>
-  </div>
-</div>
-
 <!-- NAV -->
 <nav>
   <div class="wrap">
     <div class="logo"><i class="fa-solid fa-music"></i> Oficina Musical</div>
-    <a href="#planos" class="nav-cta">Acessar agora</a>
+    <a href="#planos" class="nav-cta">Acessar app →</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
-  <div class="notes">
-    <b>♪</b><b>♫</b><b>♩</b><b>♬</b><b>♪</b><b>♫</b>
-  </div>
+  <div class="notes"><b>♪</b><b>♫</b><b>♩</b><b>♬</b><b>♪</b></div>
   <div class="wrap">
-    <span class="pretitle reveal"><i class="fa-solid fa-headphones-simple"></i> Menos papelada, mais música</span>
-    <h1 class="reveal">Organize suas aulas, alunos e materiais em um só lugar</h1>
-    <p class="sub reveal">Um aplicativo criado para professores de música que querem dar aulas com <strong>mais controle</strong> e <strong>menos bagunça</strong>.</p>
-    <div class="eq reveal" aria-hidden="true">
-      <span></span><span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span><span></span>
+    <div class="hero-tag"><i class="fa-solid fa-headphones-simple"></i> Aplicativo para Professor de Música</div>
+    <h1>Organize todas as suas aulas em um app simples e nunca mais improvise na hora de ensinar</h1>
+    <p class="sub">Oficina Musical é o sistema feito para professor de música. Você abre o app, monta a aula de cada aluno em poucos cliques, registra o que foi dado e vê num toque onde cada um parou. Chega de improvisar em cima da hora, de caderno bagunçado e de WhatsApp perdido.</p>
+    <div class="highlight">👉 <strong>Não é curso. Não é PDF. É um aplicativo que você usa todos os dias, no celular ou no computador.</strong></div>
+    <div class="social-proof">
+      <div>✓ Já usado por <strong>+87 professores</strong></div>
+      <div>★ Nota <strong>4.8/5</strong></div>
     </div>
-    <div class="video-wrap reveal">
-      <wistia-player media-id="ej9k1tdsmr" aspect="0.5625"></wistia-player>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'})">Quero acessar o app agora →</button>
+      <div class="btn-secondary"><strong>✓ Funciona no celular e PC</strong>&nbsp;&nbsp;&nbsp;✓ <strong>Sem cartão para testar</strong>&nbsp;&nbsp;&nbsp;✓ <strong>30 dias de garantia</strong></div>
     </div>
-    <img class="hero-img reveal" src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/01.png" alt="App Oficina Musical">
   </div>
 </header>
 
-<div class="staff"><i class="fa-solid fa-music"></i></div>
-
-<!-- PROBLEMA -->
-<section class="block">
+<!-- VIDEO -->
+<section class="video-sec">
   <div class="wrap">
-    <h2 class="section-title reveal">VOCÊ FAZ TUDO… MAS SEM CONTROLE</h2>
-    <div class="cards">
-      <div class="card reveal"><i class="fa-solid fa-calendar-xmark"></i><p>Agenda espalhada em WhatsApp, caderno</p></div>
-      <div class="card reveal"><i class="fa-solid fa-money-bill-wave"></i><p>Alunos faltam e você perde dinheiro</p></div>
-      <div class="card reveal"><i class="fa-solid fa-folder-open"></i><p>Materiais perdidos ou desorganizados</p></div>
-      <div class="card reveal"><i class="fa-solid fa-circle-question"></i><p>Não sabe quanto vai receber no mês</p></div>
-      <div class="card reveal"><i class="fa-solid fa-bolt"></i><p>Aula improvisada em cima da hora</p></div>
+    <h2>Veja o app por dentro</h2>
+    <p class="video-label">Tour completo pelo aplicativo (47 segundos) ›</p>
+    <div class="video-wrap">
+      <wistia-player media-id="ej9k1tdsmr" aspect="0.5625"></wistia-player>
     </div>
   </div>
 </section>
 
-<div class="staff"><i class="fa-solid fa-guitar"></i></div>
-
-<!-- ANTES / DEPOIS -->
-<section class="block">
+<!-- PAIN SECTION -->
+<section class="pain">
   <div class="wrap">
-    <h2 class="section-title reveal">A CHAVE NÃO É TRABALHAR MAIS</h2>
-    <div class="ba">
-      <div class="ba-col ba-before reveal">
-        <div class="ba-badge"><i class="fa-solid fa-circle-xmark"></i></div>
-        <h3>ANTES</h3>
+    <div class="pain-intro">
+      <h2>Você ensina muito bem. Mas organiza tudo na cabeça (e no improviso).</h2>
+      <p>O problema nunca foi sua didática. O problema é não ter um lugar único para organizar suas aulas. Toda semana você começa do zero: tenta lembrar o que deu na última aula, procura material no meio de PDFs e WhatsApps e improvisa novamente.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card"><div class="pain-card-icon">🗒️</div><p>Monta a aula na hora — Chega o aluno e você ainda está decidindo o que ensinar. O aluno percebe e a aula perde força.</p></div>
+      <div class="pain-card"><div class="pain-card-icon">🔁</div><p>Repete conteúdo sem querer — Sem registro organizado, é comum repetir matéria e travar a evolução do aluno.</p></div>
+      <div class="pain-card"><div class="pain-card-icon">📂</div><p>Materiais espalhados — Partituras, exercícios, cifras e vídeos perdidos entre WhatsApp, e-mail, Drive e caderno.</p></div>
+      <div class="pain-card"><div class="pain-card-icon">🧠</div><p>Guarda tudo na cabeça — Onde o João parou? O que a Maria precisa treinar? Quem faltou? Informação demais pra memória.</p></div>
+      <div class="pain-card"><div class="pain-card-icon">⏰</div><p>Improviso virou rotina — Improvisar de vez em quando funciona. Toda semana derruba a qualidade da aula e o valor que o aluno enxerga em você.</p></div>
+      <div class="pain-card"><div class="pain-card-icon">📉</div><p>Aluno não vê progresso — Sem histórico claro, o aluno não percebe evolução e acaba desistindo ou atrasando pagamento.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE/AFTER -->
+<section class="ba">
+  <div class="wrap">
+    <p class="ba-intro">A solução é mais simples do que você imagina: ter um único aplicativo onde tudo fica organizado.</p>
+    <div class="ba-grid">
+      <div class="ba-col ba-before">
+        <div class="ba-header"><i class="fa-solid fa-circle-xmark"></i><h3>Antes</h3></div>
         <ul>
-          <li><i class="fa-solid fa-xmark"></i> Desorganização</li>
-          <li><i class="fa-solid fa-xmark"></i> Falta de controle</li>
-          <li><i class="fa-solid fa-xmark"></i> Perda de alunos</li>
-          <li><i class="fa-solid fa-xmark"></i> Estresse</li>
+          <li><i class="fa-solid fa-xmark"></i> Monta a aula em cima da hora</li>
+          <li><i class="fa-solid fa-xmark"></i> Não lembra onde cada aluno parou</li>
+          <li><i class="fa-solid fa-xmark"></i> Materiais perdidos em vários lugares</li>
+          <li><i class="fa-solid fa-xmark"></i> Aluno não enxerga evolução</li>
+          <li><i class="fa-solid fa-xmark"></i> Improviso constante</li>
+          <li><i class="fa-solid fa-xmark"></i> Mais estresse e menos autoridade</li>
         </ul>
       </div>
-      <div class="ba-col ba-after reveal">
-        <div class="ba-badge"><i class="fa-solid fa-circle-check"></i></div>
-        <h3>DEPOIS</h3>
+      <div class="ba-col ba-after">
+        <div class="ba-header"><i class="fa-solid fa-circle-check"></i><h3>Depois</h3></div>
         <ul>
-          <li><i class="fa-solid fa-check"></i> Aulas programadas</li>
-          <li><i class="fa-solid fa-check"></i> Alunos organizados</li>
-          <li><i class="fa-solid fa-check"></i> Materiais organizados</li>
-          <li><i class="fa-solid fa-check"></i> Organização financeira</li>
+          <li><i class="fa-solid fa-check"></i> Abre o app e a aula já está pronta</li>
+          <li><i class="fa-solid fa-check"></i> Histórico completo de cada aluno num toque</li>
+          <li><i class="fa-solid fa-check"></i> Todos os materiais no mesmo lugar</li>
+          <li><i class="fa-solid fa-check"></i> Aluno vê progresso e fica motivado</li>
+          <li><i class="fa-solid fa-check"></i> Aulas com muito mais qualidade</li>
+          <li><i class="fa-solid fa-check"></i> Mais tranquilidade e retenção</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<div class="staff"><i class="fa-solid fa-music"></i></div>
+<!-- DAY IN LIFE -->
+<section class="daily">
+  <div class="wrap">
+    <h2>Como você usa o Oficina Musical no dia a dia</h2>
+    <div class="daily-grid">
+      <div class="daily-item">
+        <div class="daily-icon"><i class="fa-solid fa-sun"></i></div>
+        <h4>Antes da aula</h4>
+        <p>Abre o app e vê a aula já planejada + histórico do aluno.</p>
+      </div>
+      <div class="daily-item">
+        <div class="daily-icon"><i class="fa-solid fa-music"></i></div>
+        <h4>Durante a aula</h4>
+        <p>Registra o que foi dado em segundos.</p>
+      </div>
+      <div class="daily-item">
+        <div class="daily-icon"><i class="fa-solid fa-moon"></i></div>
+        <h4>Depois da aula</h4>
+        <p>Já deixa a próxima aula encaminhada. Sem acúmulo.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- FEATURES -->
-<section class="block">
+<section class="features">
   <div class="wrap">
-    <h2 class="section-title reveal" style="margin-bottom:30px">TUDO EM UM SÓ LUGAR PENSADO PARA VOCÊ</h2>
-
-    <div class="feature rev reveal">
-      <div class="feat-txt">
-        <h3><span class="fi"><i class="fa-solid fa-gauge-high"></i></span> Dashboard <span class="degrade">Inteligente</span></h3>
-        <p><span class="hl">Visualize sua escola em segundos.</span> Veja aulas do dia, alunos ativos, aulas concluídas no mês e valores a receber <span class="hl">sem planilhas, sem confusão.</span></p>
-      </div>
-      <img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/01-1.png" alt="Dashboard">
+    <div class="features-header">
+      <h2>TUDO ISSO DENTRO DE UM APP SÓ</h2>
+      <p>As ferramentas que o professor de música usa todo dia, num único lugar.</p>
     </div>
 
     <div class="feature reveal">
-      <img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/02-AGENDA.png" alt="Agenda">
-      <div class="feat-txt">
-        <h3><span class="fi"><i class="fa-solid fa-calendar-day"></i></span> Gestão <span class="degrade">de Aulas</span></h3>
-        <p><span class="hl">Crie, registre e acompanhe</span> todas as aulas com poucos cliques. Saiba exatamente o que foi dado, quando e para quem.</p>
+      <div class="text">
+        <h3><span class="icon">🎯</span> Plano de Aula no App</h3>
+        <p>Monte a aula de cada aluno em poucos cliques e deixe pronta para a próxima. <span class="highlight">Nunca mais improvise.</span></p>
       </div>
+      <div class="img"><img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/01-1.png" alt="Plano de Aula"></div>
     </div>
 
     <div class="feature rev reveal">
-      <div class="feat-txt">
-        <h3><span class="fi"><i class="fa-solid fa-users"></i></span> Gestão <span class="degrade">de Alunos</span></h3>
-        <p>Tenha <span class="hl">controle total dos seus alunos.</span> Veja quem está ativo, quem faltou e <span class="hl">identifique alunos em risco antes de perder receita.</span></p>
+      <div class="img"><img src="https://oficinamusicos.com/wp-content/uploads/2026/02/02-AGENDA.png" alt="Histórico"></div>
+      <div class="text">
+        <h3><span class="icon">🎵</span> Histórico por Aluno</h3>
+        <p>Veja tudo o que o aluno já estudou e onde parou. <span class="highlight">Nunca mais repita conteúdo.</span></p>
       </div>
-      <img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/03-ALUNOS.png" alt="Alunos">
     </div>
 
     <div class="feature reveal">
-      <img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/04-AULAS-E-MATERIAS.png" alt="Aulas e materiais">
-      <div class="feat-txt">
-        <h3><span class="fi"><i class="fa-solid fa-guitar"></i></span> Aulas Prontas <span class="degrade">e Materiais</span></h3>
-        <p>Organize aulas prontas, materiais e repertório em um só lugar. <span class="hl">Dê aulas com mais segurança</span>, sem improviso de última hora.</p>
+      <div class="text">
+        <h3><span class="icon">📅</span> Agenda e Registro de Aulas</h3>
+        <p>Registre e acompanhe todas as aulas <span class="highlight">sem caderno ou WhatsApp bagunçado.</span></p>
       </div>
+      <div class="img"><img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/03-ALUNOS.png" alt="Agenda"></div>
     </div>
 
     <div class="feature rev reveal">
-      <div class="feat-txt">
-        <h3><span class="fi"><i class="fa-solid fa-bell"></i></span> Comunicados <span class="degrade">Organizados</span></h3>
-        <p><span class="hl">Nunca mais esqueça de avisar um aluno ou professor.</span> O aplicativo lembra por você, no dia e na hora certa.</p>
+      <div class="img"><img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/04-AULAS-E-MATERIAS.png" alt="Materiais"></div>
+      <div class="text">
+        <h3><span class="icon">📚</span> Aulas Prontas e Materiais</h3>
+        <p>Acervo organizado de aulas, exercícios e materiais <span class="highlight">reutilizáveis para todos os alunos.</span></p>
       </div>
-      <img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/05.png" alt="Comunicados">
     </div>
 
     <div class="feature reveal">
-      <img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/06.png" alt="Financeiro">
-      <div class="feat-txt">
-        <h3><span class="fi"><i class="fa-solid fa-sack-dollar"></i></span> Financeiro <span class="degrade">Simplificado</span></h3>
-        <p><span class="hl">Saiba quanto tem a receber</span> e acompanhe seus ganhos com clareza. <span class="hl">Evite surpresas no fim do mês</span> e tenha controle do seu financeiro.</p>
+      <div class="text">
+        <h3><span class="icon">📈</span> Evolução Visível</h3>
+        <p>Acompanhe o progresso de cada aluno. <span class="highlight">Alunos motivados continuam e indicam.</span></p>
+      </div>
+      <div class="img"><img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/05.png" alt="Evolução"></div>
+    </div>
+
+    <div class="feature rev reveal">
+      <div class="img"><img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/06.png" alt="Comunicados"></div>
+      <div class="text">
+        <h3><span class="icon">🔔</span> Comunicados Organizados</h3>
+        <p>Envie avisos direto pelo app <span class="highlight">sem perder conversa.</span></p>
       </div>
     </div>
   </div>
 </section>
 
-<div class="staff"><i class="fa-solid fa-music"></i></div>
-
-<!-- DIA A DIA -->
-<section class="block">
+<!-- SOCIAL PROOF -->
+<section class="proof">
   <div class="wrap">
-    <h2 class="section-title reveal">FEITO PARA O DIA A DIA DO PROFESSOR</h2>
-    <div class="daily">
-      <div class="daily-item reveal"><div class="di-ic"><i class="fa-solid fa-clipboard-check"></i></div><p>Após a aula, registra tudo em segundos</p></div>
-      <div class="daily-item reveal"><div class="di-ic"><i class="fa-solid fa-sack-dollar"></i></div><p>No fim do mês, sabe quanto vai receber</p></div>
-      <div class="daily-item reveal"><div class="di-ic"><i class="fa-solid fa-music"></i></div><p>Antes da aula, você já sabe o que vai aplicar</p></div>
+    <h2 style="text-align:center;margin-bottom:44px">O que professores como você estão falando</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Organizei minhas aulas em um dia. Meus alunos já percebem que estou mais preparado. Recomendo demais!"</p>
+        <div class="testimonial-author">João Silva</div>
+        <div class="testimonial-sub">Professor de Violão • São Paulo</div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Parei de improvisar e meus alunos evoluem muito mais rápido. O app fez toda a diferença."</p>
+        <div class="testimonial-author">Maria Santos</div>
+        <div class="testimonial-sub">Professora de Canto • Rio de Janeiro</div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Finalmente tenho controle de quem parou aonde. Deixei de perder alunos por falta de acompanhamento."</p>
+        <div class="testimonial-author">Pedro Costa</div>
+        <div class="testimonial-sub">Professor de Guitarra • Belo Horizonte</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PLANOS -->
-<section class="block pricing" id="planos">
+<!-- PRICING -->
+<section class="pricing" id="planos">
   <div class="wrap">
-    <p class="section-kicker reveal">Escolha o plano perfeito para você</p>
-    <h2 class="section-title reveal">Planos flexíveis para atender <span class="degrade">todas as suas necessidades.</span></h2>
+    <div class="pricing-header">
+      <h2>ESCOLHA SEU PLANO E COMECE A USAR O APP HOJE</h2>
+      <p>Duas opções simples. Escolha a que faz mais sentido pra você.</p>
+    </div>
     <div class="plans">
-
-      <div class="plan reveal">
+      <div class="plan">
         <h3>Plano Básico</h3>
-        <div class="price">R$ 9,90<small>/mês</small></div>
-        <div class="price-sub">assinatura mensal</div>
-        <ul>
-          <li><i class="fa-solid fa-check"></i> Acesso total à ferramenta</li>
+        <div class="plan-price">R$ 9,90<small>/mês</small></div>
+        <div class="plan-desc">Assinatura mensal. Cancele quando quiser.</div>
+        <ul class="plan-list">
+          <li><i class="fa-solid fa-check"></i> Plano de aula e histórico</li>
+          <li><i class="fa-solid fa-check"></i> Agenda e registro</li>
+          <li><i class="fa-solid fa-check"></i> Suporte via WhatsApp</li>
           <li><i class="fa-solid fa-check"></i> Cancele a qualquer momento</li>
-          <li><i class="fa-solid fa-check"></i> Garantia de 30 dias</li>
         </ul>
-        <a class="btn" href="https://payfast.greenn.com.br/redirect/266469">Acessar o aplicativo agora</a>
+        <a href="https://payfast.greenn.com.br/redirect/266469" class="btn-primary">Acessar agora →</a>
       </div>
 
-      <div class="plan featured reveal">
-        <span class="tag"><i class="fa-solid fa-star"></i> Mais vantajoso</span>
+      <div class="plan featured">
+        <span class="plan-badge">🌟 MAIS ESCOLHIDO</span>
         <h3>Plano Plus</h3>
-        <div class="price">R$ 97<small>/anual</small></div>
-        <div class="price-sub">Garanta o anual com super desconto e bônus especiais</div>
-        <ul>
-          <li><i class="fa-solid fa-check"></i> Acesso total à ferramenta</li>
-          <li><i class="fa-solid fa-check"></i> Cancele a qualquer momento</li>
-          <li><i class="fa-solid fa-check"></i> Garantia de 30 dias</li>
+        <div class="plan-price">R$ 97<small>/anual</small></div>
+        <div class="plan-desc">Anual com super desconto. Vale muito a pena.</div>
+        <ul class="plan-list">
+          <li><i class="fa-solid fa-check"></i> Tudo do Básico</li>
+          <li><i class="fa-solid fa-check"></i> Aulas Prontas + Acervo completo</li>
+          <li><i class="fa-solid fa-check"></i> Curso de Marketing para Professores</li>
+          <li><i class="fa-solid fa-check"></i> Acesso vitalício às atualizações</li>
+          <li><i class="fa-solid fa-check"></i> Suporte prioritário</li>
         </ul>
-        <div class="bonus-box">
-          <span class="bonus-head"><i class="fa-solid fa-gift"></i> Bônus Exclusivos</span>
-          <div class="bonus-item">
-            <div class="bonus-ic"><i class="fa-solid fa-guitar"></i></div>
-            <div class="bonus-txt">
-              <strong>Todos os packs de aulas prontas</strong>
-              <span>Violão, canto, guitarra, bateria e muito mais</span>
-            </div>
-          </div>
-          <div class="bonus-item">
-            <div class="bonus-ic"><i class="fa-solid fa-bullhorn"></i></div>
-            <div class="bonus-txt">
-              <strong>Curso de Marketing para Professor</strong>
-              <span>Atraia mais alunos e lote sua agenda</span>
-            </div>
-          </div>
-        </div>
-        <a class="btn" href="https://payfast.greenn.com.br/redirect/292446">Acessar o aplicativo agora</a>
+        <a href="https://payfast.greenn.com.br/redirect/292446" class="btn-primary">Acessar agora →</a>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- GARANTIA -->
-<section class="block">
+<!-- GUARANTEE -->
+<section class="guarantee">
   <div class="wrap">
-    <div class="guarantee reveal">
-      <img src="https://oficinaparamusicos.com/wp-content/uploads/2026/02/ChatGPT-Image-22-de-fev.-de-2026-09_26_15.png" alt="Garantia 30 dias">
-      <h3>Garantia Incondicional de 30 Dias</h3>
-      <p>Se você não ficar satisfeito com nossos serviços em qualquer momento durante os primeiros 30 dias, devolvemos 100% do seu investimento. Sem perguntas, sem burocracias.</p>
+    <div class="guarantee-box">
+      <h3>🛡️ Garantia incondicional de 30 dias</h3>
+      <p>Se não organizar suas aulas de verdade e chegar mais tranquilo, devolvemos 100% do valor. <strong>Sem burocracia.</strong></p>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="block faq">
+<section class="faq">
   <div class="wrap">
+    <h2>Tudo o que você precisa saber</h2>
     <div class="faq-grid">
-      <div class="faq-intro reveal">
-        <p class="section-kicker">Perguntas Frequentes</p>
-        <h2>Tudo o que <span class="degrade">você precisa</span> saber</h2>
-        <p>Respondemos às perguntas mais comuns para que você tenha todas as informações antes de se juntar a nós.</p>
-        <a class="faq-cta" href="https://wa.me/5512988530963" target="_blank">Tem mais dúvidas? Fale comigo no WhatsApp!</a>
+      <div class="faq-intro">
+        <h3>Dúvidas?</h3>
+        <p>Aqui estão as perguntas mais comuns. Se precisar de algo mais, é só chamar.</p>
+        <a href="https://wa.me/5512988530963" target="_blank" class="faq-cta"><i class="fa-solid fa-whatsapp"></i> Fale comigo no WhatsApp</a>
       </div>
-      <div class="faq-list reveal">
+      <div>
         <div class="faq-item">
           <button class="faq-q">O aplicativo funciona no celular? <i class="fa-solid fa-plus"></i></button>
-          <div class="faq-a"><p>Sim. O aplicativo funciona 100% online e pode ser acessado pelo celular, tablet ou computador, sem precisar instalar nada.</p></div>
+          <div class="faq-a"><p>Sim, 100% online. Funciona no celular, tablet e computador. Sem instalação. Abre no navegador e pronto.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">Serve para qualquer instrumento? <i class="fa-solid fa-plus"></i></button>
-          <div class="faq-a"><p>Sim. O aplicativo foi pensado para professores de música em geral e pode ser usado para qualquer instrumento ou canto.</p></div>
+          <div class="faq-a"><p>Serve. O app foi pensado para professor de música em geral. Funciona igual bem para violão, piano, canto, bateria, flauta... qualquer instrumento.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q">Posso usar mesmo tendo poucos alunos? <i class="fa-solid fa-plus"></i></button>
-          <div class="faq-a"><p>Pode sim. O aplicativo funciona tanto para quem tem poucos alunos quanto para quem gerencia uma agenda maior.</p></div>
+          <button class="faq-q">Tenho poucos alunos. Vale a pena? <i class="fa-solid fa-plus"></i></button>
+          <div class="faq-a"><p>Vale demais. O app funciona bem se você tem 1 aluno ou 50. Até pra quem tá começando é bom deixar tudo organizado desde o começo.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q">O aplicativo substitui o WhatsApp? <i class="fa-solid fa-plus"></i></button>
-          <div class="faq-a"><p>Ele não substitui totalmente, mas reduz muito a dependência. Com os comunicados programados, você consegue avisar alunos e professores no dia e horário certos, de forma organizada.</p></div>
+          <button class="faq-q">O app substitui o WhatsApp? <i class="fa-solid fa-plus"></i></button>
+          <div class="faq-a"><p>Não substitui totalmente, mas reduz muito. Com os comunicados organizados, você avisa aluno e professor no dia e hora certos, sem perder conversa no meio.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Qual a diferença entre Básico e Plus? <i class="fa-solid fa-plus"></i></button>
+          <div class="faq-a"><p>Básico tem tudo pra organizar aula. Plus vem com aulas prontas, acervo de materiais, curso de marketing e suporte prioritário. Vale muito mais a pena no anual.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">Posso cancelar quando quiser? <i class="fa-solid fa-plus"></i></button>
-          <div class="faq-a"><p>Sim. Você pode cancelar sua assinatura a qualquer momento, sem multa ou fidelidade.</p></div>
+          <div class="faq-a"><p>Claro. Sem multa, sem fidelidade. Se resolver que não é pra você, cancela e pronto.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Como funciona a garantia de 30 dias? <i class="fa-solid fa-plus"></i></button>
+          <div class="faq-a"><p>Simples: você usa por 30 dias. Se não achar que vale a pena, pede a devolução e devolvemos seu dinheiro inteiro. Sem pergunta chata.</p></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Pronto pra organizar suas aulas e ensinar melhor?</h2>
+    <p>Comece agora. 30 dias de garantia, sem risco nenhum.</p>
+    <button class="btn-primary" onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'})">Quero acessar o Oficina Musical agora →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
   <div class="wrap">
     <div class="logo"><i class="fa-solid fa-music"></i> Oficina Musical</div>
-    <small>© 2026 Oficina Musical — Todos os direitos reservados.</small>
+    <small>© 2026 Oficina Musical. Todos os direitos reservados.</small>
   </div>
 </footer>
 
 <script>
 // Scroll reveal
-const io=new IntersectionObserver((entries)=>{
-  entries.forEach((e,i)=>{
-    if(e.isIntersecting){
-      setTimeout(()=>e.target.classList.add('in'),
-        (e.target.parentElement.classList.contains('cards')||
-         e.target.parentElement.classList.contains('daily'))? i*70:0);
-      io.unobserve(e.target);
-    }
-  });
-},{threshold:.12});
+const io=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),e.target.parentElement.classList.contains('features')?i*100:0);io.unobserve(e.target)}});
+},{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 // FAQ accordion
 document.querySelectorAll('.faq-q').forEach(btn=>{
   btn.addEventListener('click',()=>{
-    const item=btn.parentElement;
-    const a=item.querySelector('.faq-a');
-    const open=item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i=>{
-      i.classList.remove('open');
-      i.querySelector('.faq-a').style.maxHeight=null;
-    });
-    if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+    const item=btn.parentElement;const a=item.querySelector('.faq-a');const open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null});
+    if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
   });
 });
 </script>
